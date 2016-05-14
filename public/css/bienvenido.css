@@ -5,6 +5,7 @@ body{
 .contenedor {
     width: 100%;
     margin: 0px auto;
+
 }
 .contenedor_usuario {
     background-color: #00aeef;
@@ -13,10 +14,32 @@ body{
     width:19%;
 }
 
-.contenedor_publicacion {
+div.contenedor_publicacion {
     background-color: #EBE9EA;
     float:right;
     height: 5000px;
     width:80%;
 }
+/*redimensionar todas las cajas para que se adecue a la pantalla de cada dispositivo*/
+@media only screen and (max-width: 768px) {
+    div.contenedor {
+        display: block;
+    }
 
+    div.contenedor_usuario{
+        position: relative;
+        width: 100%;
+    }
+    div.contenedor_publicacion{
+        position:relative;
+        width: 100%;
+    }
+
+    section.contenido_buscador{
+        width: 100%;
+    }
+    div.opciones_menu{
+        width: 100%;
+    }
+}
+/*fin*/
