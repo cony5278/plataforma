@@ -1,0 +1,14 @@
+
+.contenido_registro_usuario{
+    display: none;
+    z-index:2;
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    left:0;
+
+}
+
+[class="campo_registro*"]{
+
+}
