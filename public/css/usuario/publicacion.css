@@ -7,3 +7,17 @@
 section.contenedor_publicar{
     background: seagreen;
 }
+/*los 3 contenedores que van a parecer dentro del panel publicaciones*/
+div #contenedor_publicacion_publicacion{
+    display:block;
+}
+div #contenedor_publicacion_configuracion{
+    display: none;
+}
+div #contenedor_publicacion_documentos{
+    display: none;
+}
+
+div #contenedor_publicacion_imagenes{
+    display: none;
+}

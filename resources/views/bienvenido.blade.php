@@ -16,18 +16,15 @@
             window.onscroll = function (){
                 var scroll = document.documentElement.scrollTop || document.body.scrollTop;
                 if(scroll>=numero){
-                    document.getElementById('todo').innerHTML=scroll;
                     var menu= document.getElementsByClassName('contenedor_buscador');
                     menu[0].style.width="inherit";
                     menu[0].style.position="fixed";
                 }else if(scroll==0){
-                    document.getElementById('todo').innerHTML=scroll;
                     var menu= document.getElementsByClassName('contenedor_buscador');
                     menu[0].style.width="100%";
                     menu[0].style.position="relative";
                 }
             }
-
         }
     </script>
 </head>

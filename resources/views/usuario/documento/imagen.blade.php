@@ -1,1 +1,1 @@
-<h1>TODAS LAS IMAGENES DEL USUARIO</h1>
+<div id="contenedor_publicacion_imagenes"class="agrupacion_contenedor_publicacion"><a>IMAGENES</a></div>
