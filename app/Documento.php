@@ -13,9 +13,10 @@ class eDocumento extends Model
         'nombre_persona' ,
         'apellido_persona' ,
         'tipo_documento',
-//        'user_id',
-//        'publicacion_id',];
+        'user_id',
+        'publicacion_id',
     ];
+
     public function insertar($nombre_documento,$nombre_persona,$apellido_persona,$tipo_documento){
         $this->nombre_documento=$nombre_documento;
         $this->nombre_persona=$nombre_persona;

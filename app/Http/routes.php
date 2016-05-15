@@ -27,9 +27,11 @@ Route::get('usuario', function () {
         return Redirect::to('/');
 });
 
-
-Route::get('usuario/documento/guardar','ControladorArchivoImagenes@guardar');
-Route::post('usuario/documento/guardar','ControladorArchivoImagenes@guardar');
+Route::get('imagenes',function(){
+    return view('pruebas.subir_archivo');
+});
+Route::get('usuario/documento/','ControladorArchivoImagenes@guardar');
+Route::post('usuario/documento/','ControladorArchivoImagenes@guardar');
 
 Route::get('usuario/documento/registrar','ControladorDocumento@registrar');
 Route::post('usuario/documento/registrar','ControladorDocumento@registrar');
