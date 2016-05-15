@@ -27,6 +27,13 @@ Route::get('usuario', function () {
         return Redirect::to('/');
 });
 
+
+Route::get('usuario/documento/guardar','ControladorArchivoImagenes@guardar');
+Route::post('usuario/documento/guardar','ControladorArchivoImagenes@guardar');
+
+Route::get('usuario/documento/registrar','ControladorDocumento@registrar');
+Route::post('usuario/documento/registrar','ControladorDocumento@registrar');
+
 Route::get('usuario/registrar','Auth\AuthController@getRegister');
 Route::post('usuario/registrar','Auth\AuthController@postRegister');
 Route::get('usuario/sesion','Auth\AuthController@getLogin');

@@ -7,8 +7,10 @@
     <link rel="stylesheet" type="text/css" href="../css/usuario/publicacion_menu.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="../css/usuario/publicacion.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="../css/bienvenido.css" media="screen" />
+    <script src="../js/index/registro.js" type="text/javascript"></script>
     <script src="../js/bienvenido/publicacion.js" type="text/javascript"></script>
     <script src="../js/bienvenido/usuario.js" type="text/javascript"></script>
+
     <script>
         window.onload=function() {
             var publicar=document.getElementsByClassName('contenedor_publicar');
@@ -31,6 +33,8 @@
                         menu[0].style.position="relative";
                     }
             }
+            var publicacion=new Publicacion();
+            publicacion.registrar(2,"enviar_documento","http://localhost:8000/usuario/documento/registrar");
         }
     </script>
 </head>

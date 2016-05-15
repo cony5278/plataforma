@@ -6,8 +6,7 @@ ContenedorVentana=function(){
         var etiqueta_a=document.getElementsByClassName(clase);
         var obj=this;
         for (var i=0;i<etiqueta_a.length;i++){
-            etiqueta_a[i].onclick=function(contador){
-
+            etiqueta_a[i].onclick=function(){
                 switch(this.id){
                     case "menu_configuracion":
                         obj.ocultar_ventanas(etiqueta_a.length,0);

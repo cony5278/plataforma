@@ -16,8 +16,9 @@ Ajax=function(){
             this.peticion_http  = new ActiveXObject("Microsoft.XMLHTTP");
         }
     };
-    this.enviar=function  (dato){
-        this.peticion_http.open('POST','http://localhost:8000/hola', true);
+    this.enviar=function  (dato,url){
+        //url='http://localhost:8000/hola'
+        this.peticion_http.open('POST',url, true);
         var valor=document.getElementById('token').value;
         this.peticion_http.setRequestHeader("X-CSRF-TOKEN",valor);
         this.peticion_http.send(dato);
@@ -65,7 +66,7 @@ RegistroUsuario=function(){
     };
     this.enviar_registro=function(){
 
-        document.getElementById('boton_registro').onclick=function(){s
+        document.getElementById('boton_registro').onclick=function(){
             document.getElementById('formulario_registro').submit();
             //var input_registro=document.getElementsByClassName('input_registro');//todos los input
             //
