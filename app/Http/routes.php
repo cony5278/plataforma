@@ -20,7 +20,6 @@ Route::get('/', function () {
 });
 
 Route::get('usuario', function () {
-
     if(Auth::check())
         return view('general.general_usuario');
     else
