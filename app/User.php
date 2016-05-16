@@ -28,5 +28,8 @@ class User extends Authenticatable
     public function documentos(){
         return $this->hasMany('App\Documento');
     }
+    public function imagenes(){
+        return $this->hasMany('App\Imagen');
+    }
 
 }

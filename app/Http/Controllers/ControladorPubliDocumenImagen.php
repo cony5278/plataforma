@@ -25,15 +25,19 @@ class ControladorPubliDocumenImagen extends Controller
             'user_id'=>Auth::users()->id,
             'publicacion_id'=>$publicacion->id,
         ]);
-
-        $files = $request->file('archivo');
-        foreach($files as $file){
-            $nombre = Carbon::now()->toTimeString().$file->getClientOriginalName();
-            \Storage::disk('local')->put($nombre,  \File::get($file));
-            Imagen::create([
-                'nombre_imagen'=>$nombre,
-                'documento_id'=>$documento->id,
-            ]);
+        //cuando el usuario quiera subir una imagen o elegir de la galeria que ya tiene
+        if(!is_null($request->file('archivo'))) {
+            $files = $request->file('archivo');
+            foreach ($files as $file) {
+                $nombre = Carbon::now()->toTimeString() . $file->getClientOriginalName();
+                \Storage::disk('local')->put($nombre, \File::get($file));
+                Imagen::create([
+                    'nombre_imagen' => $nombre,
+                    'documento_id' => $documento->id,
+                ]);
+            }
+        }else{
+//        recibirel array no se como todabia
         }
     }
 }

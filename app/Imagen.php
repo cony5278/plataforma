@@ -10,10 +10,14 @@ class Imagen extends Model
     public  $timestamps=false;
     protected $fillable =[
         'nombre_imagen',
+        'user_id' ,
         'documento_id' ,
     ];
     public function documentos(){
         return $this->belongsTo('App\Documento');
+    }
+    public function users(){
+        return $this->belongsTo('App\User');
     }
 
 }
