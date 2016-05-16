@@ -16,8 +16,7 @@ class Publicacion extends Migration
             $table->increments('id');
             $table->string('descripcion_publicacion');
             $table->dateTime('fecha_hora_publicacion');
-            $table->integer('user_id')->nullable()->unsigned();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
         });
     }
 

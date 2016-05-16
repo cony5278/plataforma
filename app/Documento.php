@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class eDocumento extends Model
+class Documento extends Model
 {
     protected $table="documentos";
     public  $timestamps=false;
@@ -23,5 +23,15 @@ class eDocumento extends Model
         $this->apellido_persona=$apellido_persona;
         $this->tipo_documento=$tipo_documento;
         $this->save();
+    }
+    public function users(){
+        return $this->belongsTo('App\User');
+    }
+
+    public function publicacions(){
+        return $this->belongsTo('App\Publicacion');
+    }
+    public function imagens(){
+        return $this->hasMany('App\Imagen');
     }
 }

@@ -27,6 +27,6 @@ class Imagen extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('imagens');
     }
 }

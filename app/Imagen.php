@@ -12,5 +12,8 @@ class Imagen extends Model
         'nombre_imagen',
         'documento_id' ,
     ];
+    public function documentos(){
+        return $this->belongsTo('App\Documento');
+    }
 
 }
