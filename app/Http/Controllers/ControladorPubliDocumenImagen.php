@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Imagen;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Documento;
-use App\publicacion;
+use App\Publicacion;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
+
 class ControladorPubliDocumenImagen extends Controller
 {
     protected $redirectTo = 'usuario';
@@ -22,22 +24,22 @@ class ControladorPubliDocumenImagen extends Controller
             'nombre_persona'=>$request->input('nombre_persona'),
             'apellido_persona'=>$request->input('apellido_persona'),
             'tipo_documento'=>$request->input('tipo_documento'),
-            'user_id'=>Auth::users()->id,
+            'user_id'=>Auth::user()->id,
             'publicacion_id'=>$publicacion->id,
         ]);
-        //cuando el usuario quiera subir una imagen o elegir de la galeria que ya tiene
-        if(!is_null($request->file('archivo'))) {
-            $files = $request->file('archivo');
-            foreach ($files as $file) {
-                $nombre = Carbon::now()->toTimeString() . $file->getClientOriginalName();
-                \Storage::disk('local')->put($nombre, \File::get($file));
-                Imagen::create([
-                    'nombre_imagen' => $nombre,
-                    'documento_id' => $documento->id,
-                ]);
-            }
-        }else{
-//        recibirel array no se como todabia
+//        //cuando el usuario quiera subir una imagen o elegir de la galeria que ya tiene
+
+        $files = $request->file('archivo');
+        foreach ($files as $file) {
+            $nombre = Carbon::now()->toTimeString() . $file->getClientOriginalName();
+            \Storage::disk('local')->put($nombre, \File::get($file));
+            Imagen::create([
+                'nombre_imagen' => $nombre,
+                'user_id' => Auth::user()->id,
+                'documento_id' => $documento->id,
+
+            ]);
         }
+
     }
 }

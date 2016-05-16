@@ -35,6 +35,8 @@
             }
             var publicacion=new Publicacion();
             publicacion.registrar(2,"enviar_documento","http://localhost:8000/usuario/documento/registrar");
+            publicacion.registrar(3,"enviar_imagenes","http://localhost:8000/usuario/imagen/registrar");
+
         }
     </script>
 </head>

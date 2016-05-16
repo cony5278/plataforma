@@ -30,11 +30,18 @@ Route::get('usuario', function () {
 Route::get('imagenes',function(){
     return view('pruebas.subir_archivo');
 });
-Route::get('usuario/documento/','ControladorArchivoImagenes@guardar');
-Route::post('usuario/documento/','ControladorArchivoImagenes@guardar');
 
-Route::get('usuario/documento/registrar','ControladorDocumento@registrar');
-Route::post('usuario/documento/registrar','ControladorDocumento@registrar');
+Route::get('document',function(){
+    return view('usuario.documento.subir');
+});
+
+Route::get('usuario/documento/registrar','ControladorPubliDocumenImagen@registrar');
+Route::post('usuario/documento/registrar','ControladorPubliDocumenImagen@registrar');
+
+Route::get('/usuario/imagen/registrar','ControladorImagen@registrar');
+Route::post('/usuario/imagen/registrar','ControladorImagen@registrar');
+
+
 
 Route::get('usuario/registrar','Auth\AuthController@getRegister');
 Route::post('usuario/registrar','Auth\AuthController@postRegister');
