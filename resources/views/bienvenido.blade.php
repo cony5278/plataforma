@@ -17,21 +17,30 @@
             var numero=publicar[0].offsetTop;
             var ventana=new ContenedorVentana();
             ventana.desaparecer('menu_usuario',"","");
-            window.onscroll = function (){
+            var menu = document.getElementsByClassName('contenedor_buscador');
+            window.onscroll = function () {
                 var scroll = document.documentElement.scrollTop || document.body.scrollTop;
-                var id=document.getElementById('menu_imagenes');
-                if(window.innerWidth>768)
-                    if(scroll>=numero){
-                        var menu= document.getElementsByClassName('contenedor_buscador');
-                        id.innerHTML=scroll;
-                        menu[0].style.width="inherit";
-                        menu[0].style.position="fixed";
-                    }else if(scroll<=numero){
-                        id.innerHTML=scroll;
-                        var menu= document.getElementsByClassName('contenedor_buscador');
-                        menu[0].style.width="100%";
-                        menu[0].style.position="relative";
+                var id = document.getElementById('menu_imagenes');
+                if (window.innerWidth >= 768) {
+                    if (scroll >= numero) {
+                        id.innerHTML = scroll;
+                        menu[0].style.width = "inherit";
+                        menu[0].style.position = "fixed";
+                    } else if (scroll <= numero) {
+                        id.innerHTML = scroll;
+                        menu[0].style.width = "100%";
+                        menu[0].style.position = "relative";
                     }
+                }
+            }
+            window.onresize = function(event) {
+                if (window.innerWidth < 768) {
+                    menu[0].style.width = "100%";
+                    menu[0].style.position = "relative";
+                }else{
+                    menu[0].style.width = "inherit";
+                    menu[0].style.position = "fixed";
+                }
             }
             var publicacion=new Publicacion();
             publicacion.guardar("guardar_documento");

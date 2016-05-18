@@ -6,10 +6,15 @@
 
 section.contenedor_publicar{
     background: seagreen;
+    position: relative;
 }
 /*los 3 contenedores que van a parecer dentro del panel publicaciones*/
 div #contenedor_publicacion_publicacion{
-    display:block;
+
+    width:30%;
+    /*background: #000;*/
+    position:relative ;
+    left: 35%;
 }
 div #contenedor_publicacion_configuracion{
     display: none;

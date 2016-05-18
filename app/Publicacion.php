@@ -14,7 +14,7 @@ class Publicacion extends Model
     ];
 
 
-    public function documentos(){
+    public function documento(){
         return $this->hasMany('App\Documento');
     }
 }

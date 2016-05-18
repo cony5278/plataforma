@@ -21,7 +21,7 @@ Route::get('/', function () {
 
 Route::get('usuario', function () {
     if(Auth::check())
-        return view('general.general_usuario');
+        return view('general.general_usuario',['publicaciones'=>\App\Publicacion::all()]);
     else
         return Redirect::to('/');
 });
@@ -57,3 +57,10 @@ Route::get('usuario/cerrar/sesion',function() {
     return  Redirect::to('/');
 });
 
+Route::get('mapas',function(){
+    return view('pruebas.mapas');
+});
+Route::get('join',function(){
+
+    return view('pruebas.join',['publicaciones'=>\App\Publicacion::all()]);
+});

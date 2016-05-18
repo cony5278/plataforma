@@ -21,7 +21,15 @@ Ajax=function(){
         this.peticion_http.open('POST',url, true);
         var valor=document.getElementById('token').value;
         this.peticion_http.setRequestHeader("X-CSRF-TOKEN",valor);
+        //this.peticion_http.setRequestHeader('Content-Type', 'application/json;charset=UTF-8')
+        //var myjson = '{ "nombre" :"juan camilo","apellido":"rodriguez diaz"}';
+        var input_registro = document.getElementsByClassName('campo_documentos');//todos los input
+        var myjson = {"nombre_documento":input_registro[0].value};
+
+        //var  da=new FormData();
+        //da.append('mk',JSON.stringify(dato));
         this.peticion_http.send(dato);
+
     };
     this.muestraContenido= function() {
         var peticion;

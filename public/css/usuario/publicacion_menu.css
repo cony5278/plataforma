@@ -4,7 +4,7 @@ div.contenedor_buscador{
     padding: 0;
     margin: 0;
     background: tomato;
-
+    z-index: 1;
 }
 section.contenido_buscador{
     width: 60%;

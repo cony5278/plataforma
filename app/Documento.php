@@ -24,14 +24,13 @@ class Documento extends Model
         $this->tipo_documento=$tipo_documento;
         $this->save();
     }
-    public function users(){
+    public function user(){
         return $this->belongsTo('App\User');
     }
-
-    public function publicacions(){
+    public function publicacion(){
         return $this->belongsTo('App\Publicacion');
     }
-    public function imagens(){
+    public function imagen(){
         return $this->hasMany('App\Imagen');
     }
 }
