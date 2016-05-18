@@ -1,6 +1,5 @@
 Publicacion=function(){
     this.dato=new FormData();
-
     this.contador=0;
     this.configuracion=function(){
 
@@ -11,6 +10,7 @@ Publicacion=function(){
     this.documento=function()
     {
         var input_registro=document.getElementsByClassName('campo_documentos');//todos los input
+        this.dato.append("titulo_documento", input_registro[3].value);
         this.dato.append("descripcion_publicacion",input_registro[4].value);
     };
     this.guardar=function(id){
@@ -20,10 +20,9 @@ Publicacion=function(){
             obj.contador++;
             var imagenes = document.getElementById("archivo_campo_documentos").files;//Creamos un objeto con el elemento que contiene los archivos: el campo input file, que tiene el id = 'archivos'
             var input_registro = document.getElementsByClassName('campo_documentos');//todos los input
-            obj.dato.append("nombre_documento[]", input_registro[0].value);
-            obj.dato.append("nombre_persona[]", input_registro[1].value);
-            obj.dato.append("apellido_persona[]", input_registro[2].value);
-            obj.dato.append("tipo_documento[]", input_registro[3].value);
+            obj.dato.append("nombre_persona[]", input_registro[0].value);
+            obj.dato.append("apellido_persona[]", input_registro[1].value);
+            obj.dato.append("tipo_documento[]", input_registro[2].value);
             var data = new FormData();
             for (var i = 0; i < imagenes.length; i++) {
                 obj.dato.append('archivo[]', imagenes[i], obj.contador + "_" + imagenes[i].name);
@@ -60,9 +59,12 @@ Publicacion=function(){
                     dato=obj.imagen();
                     break;
             }
+            //obj.dato=null;//borrar los campors de un FormData
+            obj.contador=0;//contador a 0;
             var ajax=new Ajax();
             ajax.inicializar();
             ajax.enviar(dato,url);
+
         }
     };
 };

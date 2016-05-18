@@ -29,7 +29,8 @@ trait RegistersUsers
         if (property_exists($this, 'registerView')) {
             return view($this->registerView);
         }
-
+        if(!(\Storage::exists(Auth::user()->email)))
+            \Storage::makeDirectory(Auth::user()->email);
         return view('auth.register');
     }
 
@@ -61,7 +62,8 @@ trait RegistersUsers
         }
 
         Auth::guard($this->getGuard())->login($this->create($request->all()));
-
+        if(!(\Storage::exists(Auth::user()->email)))
+            \Storage::makeDirectory(Auth::user()->email);
         return redirect($this->redirectPath());
     }
 

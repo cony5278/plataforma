@@ -64,3 +64,5 @@ Route::get('join',function(){
 
     return view('pruebas.join',['publicaciones'=>\App\Publicacion::all()]);
 });
+
+Route::get('crear/carpeta','pruebas@crear');

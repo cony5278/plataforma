@@ -18,14 +18,14 @@ class ControladorPubliDocumenImagen extends Controller
     public function registrar(Request $request)
     {
         $publicacion = Publicacion::create([
+            'titulo_publicacion' => $request->input('titulo_publicacion'),
             'descripcion_publicacion' => $request->input('descripcion_publicacion'),
             'fecha_hora_publicacion' => Carbon::now()->toDateTimeString(),
         ]);
-        $nombre_documento = $request->input('nombre_documento');
+        $nombre_documento = $request->input('nombre_persona');
         $valor = 0;
-        for ($i = 0; $i < count($nombre_documento); ++$i) {
+        for ($i = 0; $i < count($nombre_documento); $i++) {
             $documento = Documento::create([
-                'nombre_documento' => $request->input('nombre_documento')[$i],
                 'nombre_persona' => $request->input('nombre_persona')[$i],
                 'apellido_persona' => $request->input('apellido_persona')[$i],
                 'tipo_documento' => $request->input('tipo_documento')[$i],
@@ -33,11 +33,15 @@ class ControladorPubliDocumenImagen extends Controller
                 'publicacion_id' => $publicacion->id,
             ]);
             $files = $request->file('archivo');
-            for ($j = $valor; $j < count($files); ++$j) {
+            for ($j = $valor; $j < count($files); $j++) {
                 if ($request->file('archivo')[$j]->getClientOriginalName()[0] == $i+1) {
+//                    echo "entro cuantas veces ".$j;
                     $valor++;
                     $nombre = Carbon::now()->toTimeString() . $request->file('archivo')[$j]->getClientOriginalName();
-                    \Storage::disk('local')->put($nombre, \File::get($request->file('archivo')[$j]));
+                    $ruta=Auth::user()->email."/".$documento->tipo_documento;
+                    if(!(\Storage::exists($ruta)))
+                        \Storage::makeDirectory($ruta);
+                    \Storage::disk('local')->put($ruta."/".$nombre, \File::get($request->file('archivo')[$j]));
                     Imagen::create([
                         'nombre_imagen' => $nombre,
                         'user_id' => Auth::user()->id,

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Publicacion extends Migration
+class Departamento extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,9 @@ class Publicacion extends Migration
      */
     public function up()
     {
-        Schema::create('publicacions', function (Blueprint $table) {
+        Schema::create('departamentos',function(Blueprint $table){
             $table->increments('id');
-            $table->string('titulo_publicacion');
-            $table->string('descripcion_publicacion');
-            $table->dateTime('fecha_hora_publicacion');
-
+            $table->string('nombre_departamento');
         });
     }
 
@@ -28,6 +25,6 @@ class Publicacion extends Migration
      */
     public function down()
     {
-        Schema::drop('publicacions');
+        Schema::drop('departamentos');
     }
 }
