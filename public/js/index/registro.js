@@ -8,7 +8,9 @@
  */
 Ajax=function(){
     this.peticion_http=null;
+
     this.inicializar=function(){
+
         if(window.XMLHttpRequest) {
             this.peticion_http = new XMLHttpRequest();
         }
@@ -22,23 +24,17 @@ Ajax=function(){
         var valor=document.getElementById('token').value;
         this.peticion_http.setRequestHeader("X-CSRF-TOKEN",valor);
         //this.peticion_http.setRequestHeader('Content-Type', 'application/json;charset=UTF-8')
-        //var myjson = '{ "nombre" :"juan camilo","apellido":"rodriguez diaz"}';
-        var input_registro = document.getElementsByClassName('campo_documentos');//todos los input
-        var myjson = {"nombre_documento":input_registro[0].value};
-
-        //var  da=new FormData();
-        //da.append('mk',JSON.stringify(dato));
         this.peticion_http.send(dato);
-
     };
-    this.muestraContenido= function() {
-        var peticion;
-        if( this.peticion_http.readyState == 4) {
-            if( this.peticion_http.status == 200) {
-                peticion=  this.peticion_http.responseText;
+    this.muestraContenido= function(contenedor) {
+        var obj=this;
+        this.peticion_http.onreadystatechange=function(){
+            if(obj.peticion_http.readyState == 4) {
+                if(obj.peticion_http.status == 200) {
+                    contenedor.placeholder=obj.peticion_http.responseText;
+                }
             }
         }
-        return peticion;
     };
 };
 

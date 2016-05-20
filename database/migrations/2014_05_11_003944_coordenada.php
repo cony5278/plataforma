@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Departamento extends Migration
+class Coordenada extends Migration
 {
     /**
      * Run the migrations.
@@ -12,9 +12,10 @@ class Departamento extends Migration
      */
     public function up()
     {
-        Schema::create('departamentos',function(Blueprint $table){
+        Schema::create('coordenadas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre_departamento');
+            $table->string('latitud')->nullable();
+            $table->string('longitud')->nullable();
         });
     }
 
@@ -25,6 +26,6 @@ class Departamento extends Migration
      */
     public function down()
     {
-        Schema::drop('departamentos');
+        //
     }
 }

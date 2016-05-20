@@ -27,7 +27,7 @@ class ControladorPubliDocumenImagen extends Controller
         for ($i = 0; $i < count($nombre_documento); $i++) {
             $documento = Documento::create([
                 'nombre_persona' => $request->input('nombre_persona')[$i],
-                'apellido_persona' => $request->input('apellido_persona')[$i],
+                'numero_documento' => $request->input('numero_documento')[$i],
                 'tipo_documento' => $request->input('tipo_documento')[$i],
                 'user_id' => Auth::user()->id,
                 'publicacion_id' => $publicacion->id,

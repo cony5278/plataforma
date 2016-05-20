@@ -15,7 +15,7 @@ class Documento extends Migration
         Schema::create('documentos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre_persona');
-            $table->string('apellido_persona');
+            $table->string('numero_documento');
             $table->enum('tipo_documento',['tarjeta_credito','tarjeta_debito','carnet_estudiantil',
             'carnet_eps','libreta_militar','pasaporte','visa','tarjeta_profesional','pase','licencia_conduccion','otro']);
             $table->integer('user_id')->unsigned();

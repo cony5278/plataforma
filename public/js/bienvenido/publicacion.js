@@ -21,7 +21,7 @@ Publicacion=function(){
             var imagenes = document.getElementById("archivo_campo_documentos").files;//Creamos un objeto con el elemento que contiene los archivos: el campo input file, que tiene el id = 'archivos'
             var input_registro = document.getElementsByClassName('campo_documentos');//todos los input
             obj.dato.append("nombre_persona[]", input_registro[0].value);
-            obj.dato.append("apellido_persona[]", input_registro[1].value);
+            obj.dato.append("numero_documento[]", input_registro[1].value);
             obj.dato.append("tipo_documento[]", input_registro[2].value);
             var data = new FormData();
             for (var i = 0; i < imagenes.length; i++) {

@@ -1,7 +1,9 @@
 @extends('bienvenido')
 {{--publicaciones--}}
+@section('configuracion')
+    @include('usuario.configuracion.configuracion')
+@stop
 @section('usuario')
-
     @include('usuario.usuario')
 @stop
 

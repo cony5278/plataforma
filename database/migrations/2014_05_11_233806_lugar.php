@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Publicacion extends Migration
+class Lugar extends Migration
 {
     /**
      * Run the migrations.
@@ -12,14 +12,13 @@ class Publicacion extends Migration
      */
     public function up()
     {
-        Schema::create('publicacions', function (Blueprint $table) {
+        Schema::create('lugars', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('titulo_publicacion');
-            $table->string('descripcion_publicacion');
-            $table->dateTime('fecha_hora_publicacion');
+            $table->integer('id_ubicacion')->nullable();
+            $table->string('nombre_lugar');
+            $table->enum('tipo_lugar',['DEPARTAMENTO','MUNICIPIO']);
         });
     }
-
     /**
      * Reverse the migrations.
      *
@@ -27,6 +26,6 @@ class Publicacion extends Migration
      */
     public function down()
     {
-        Schema::drop('publicacions');
+        Schema::drop('lugars');
     }
 }

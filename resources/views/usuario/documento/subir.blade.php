@@ -2,7 +2,7 @@
     {{--<form method="post" action="parce" enctype="multipart/form-data">--}}
     <input type="hidden" name="_token" value="{{csrf_token()}}" id="token"/>
     <input type="text" placeholder="nombre persona" class="campo_documentos"  name="nombre_persona"/>
-    <input type="text" placeholder="apellido persona" class="campo_documentos"  name="apellido_persona"/>
+    <input type="text" placeholder="numero documento" class="campo_documentos"  name="numero_documento"/>
     <select name="tipo_documento" class="campo_documentos" >
         <option value="tarjeta_credito" selected>tarjeta credito</option>
         <option value="tarjeta_debito" >tarjeta debito</option>

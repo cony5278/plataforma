@@ -4,19 +4,26 @@
     <title>Laravel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
+
     <link rel="stylesheet" type="text/css" href="../css/usuario/publicacion_menu.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="../css/usuario/publicacion.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="../css/bienvenido.css" media="screen" />
     <script src="../js/index/registro.js" type="text/javascript"></script>
     <script src="../js/bienvenido/publicacion.js" type="text/javascript"></script>
     <script src="../js/bienvenido/usuario.js" type="text/javascript"></script>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
 
     <script>
         window.onload=function() {
             var publicar=document.getElementsByClassName('contenedor_publicar');
             var numero=publicar[0].offsetTop;
+            var configuracionUsuario=new ConfiguracionUsuario("boton_guardar_Campos","boton_borrar_informacion_campos","campos_usuarios");
+
+            configuracionUsuario.campos_input_guardar("http://localhost:8000/usuario/configuracion");
+//            configuracionUsuario.campos_input_borrar();
             var ventana=new ContenedorVentana();
             ventana.desaparecer('menu_usuario',"","");
+            ventana.configuracion('configuracion_atras');
             var menu = document.getElementsByClassName('contenedor_buscador');
             window.onscroll = function () {
                 var scroll = document.documentElement.scrollTop || document.body.scrollTop;
@@ -51,6 +58,9 @@
     </script>
 </head>
 <body>
+
+@yield('configuracion')
+
 <div class="contenedor">
     <div class="contenedor_usuario">
         <h1> USUARIO </h1>
