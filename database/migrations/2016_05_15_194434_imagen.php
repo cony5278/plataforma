@@ -14,7 +14,7 @@ class Imagen extends Migration
     {
         Schema::create('imagens', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre_imagen');
+            $table->string('ruta_imagen');
             $table->integer('user_id')->nullable()->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('documento_id')->nullable()->unsigned();

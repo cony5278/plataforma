@@ -16,14 +16,14 @@
                     </select>
                     <select name="tipo_documento">
                         <option value="seleccione_tipo_documento" selected>Seleccion un Documento</option>
-                        <option value="tarjeta_credito" >tarjeta credito</option>
-                        <option value="tarjeta_debito" >tarjeta debito</option>
-                        <option value="carnet_estudiantil">carnet estudiantil</option>
-                        <option value="pasaporte">pasaporte</option>
-                        <option value="visa">visa</option>
-                        <option value="tarjeta_profesional">tarjeta profesional</option>
-                        <option value="licencia_conduccion">licencia de conduccion</option>
-                        <option value="otro">otro</option>
+                        <option value="tarjeta_credito" >Tarjeta credito</option>
+                        <option value="tarjeta_debito" >Tarjeta debito</option>
+                        <option value="carnet_estudiantil">Carnet estudiantil</option>
+                        <option value="pasaporte">Pasaporte</option>
+                        <option value="visa">Visa</option>
+                        <option value="tarjeta_profesional">Tarjeta profesional</option>
+                        <option value="licencia_conduccion">Licencia de conduccion</option>
+                        <option value="otro">Otro</option>
                     </select>
                 </div>
             </form>

@@ -21,7 +21,7 @@ Route::get('/', function () {
 
 Route::get('usuario', function () {
     if(Auth::check())
-        return view('general.general_usuario',['publicaciones'=>\App\Publicacion::all()]);
+        return view('general.general_usuario',['publicaciones'=>\App\Publicacion::all(),'municipios'=>\App\Lugar::where('tipo_lugar','MUNICIPIO')->get()]);
     else
         return Redirect::to('/');
 });
@@ -74,7 +74,7 @@ Route::get('join',function(){
 Route::get('crear/carpeta','pruebas@crear');
 
 Route::get('buscador',function(){
-    return view('buscador.buscador_usuario',['municipios'=>\App\Lugar::where('tipo_lugar','MUNICIPIO')->get()]);
+    return view('buscador.buscador_usuario',['municipios'=>\App\Lugar::where('tipo_lugar','MUNICIPIO')->orderBy('nombre_lugar','asc')->get()]);
 });
 
 

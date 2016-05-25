@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Documento;
+use App\Publicacion;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Input;
@@ -25,51 +26,57 @@ class ControladorDocumento extends Controller
     public function buscador(Request $request)
     {
 
-        //no eligio nada
-//        if ($request->input('seleccione_tipo_documento') == "seleccione_tipo_documento" && $request->input('seleccione_ubicacion') == "seleccione_ubicacion")
-//            if(!is_numeric($request->input('buscador_general')[0])&&$request->input('buscador_general')[0]!="")
-//                $consulta = Documento::where('nombre_persona','LIKE','%'.$request->input('buscador_general').'%')->get();
-//            else
-//                $consulta = Documento::where('numero_documento','LIKE','%'.$request->input('buscador_general').'%')->get();
-//
-//        else if ($request->input('seleccione_tipo_documento') != "seleccione_tipo_documento" && $request->input('seleccione_ubicacion') == "seleccione_ubicacion")
-//            $consulta = Documento::where('tipo_documento',$request->input('seleccione_tipo_documento'))->get();
-
-
-//        if ($request->input('seleccione_tipo_documento') == "seleccione_tipo_documento" && $request->input('seleccione_ubicacion') == "seleccione_ubicacion")
-
-        if($request->input('buscador_general')!=" ") {
-            if (!is_numeric($request->input('buscador_general')[0])) {
-                //no es numerico y vacio los selectores
+        if($request->has('buscador_general')) {
+            if (!is_numeric($request->input('buscador_general'))) {
+//                echo"no es numerico y vacio los selectores";
                 $this->repetido($request);
             } else {
-                //si es numerico y vacio los selectores
+//                echo "si es numerico y vacio los selectores";
                 $this->repetido($request);
-          } //salir un mensaje que escriba algo mas bien
+            } //salir un mensaje que escriba algo mas bien
         }else{
-            echo "tiene que se diferente de vacio";
+//            echo "tiene que se diferente de vacio";
         }
-        return "entro";
+
     }
 
     private function repetido(Request $request){
-        if ($request->input('tipo_documento') == "seleccione_tipo_documento" && $request->input('ubicacion') == "seleccione_ubicacion")
-            echo "vacio 2";
-        else if ($request->input('tipo_documento') != "seleccione_tipo_documento" && $request->input('ubicacion') == "seleccione_ubicacion")
-            echo "selecciono un tipo de documento 2";
-        else if ($request->input('tipo_documento') == "seleccione_tipo_documento" && $request->input('ubicacion') != "seleccione_ubicacion")
-            echo "selecciono ubicacion 2";
-        else if ($request->input('tipo_documento') != "seleccione_tipo_documento" && $request->input('ubicacion') != "seleccione_ubicacion")
-            echo "selecciono un tipo de documento 2 && selecciono ubicacion 2";
+        if ($request->input('tipo_documento') == "seleccione_tipo_documento" && $request->input('ubicacion') == "seleccione_ubicacion") {
+
+            $publicaciones = Publicacion::join('documentos', 'documentos.publicacion_id', '=', 'publicacions.id')->join('imagens','imagens.documento_id','=','documentos.id')->where('nombre_persona','LIKE','%'.$request->input('buscador_general').'%')->orWhere('numero_documento','LIKE','%'.$request->input('buscador_general').'%')->get();
+
+        }else if ($request->input('tipo_documento') != "seleccione_tipo_documento" && $request->input('ubicacion') == "seleccione_ubicacion"){
+            $publicaciones=Publicacion::join('documentos', 'documentos.publicacion_id', '=', 'publicacions.id')->join('imagens','imagens.documento_id','=','documentos.id')->where
+            (function($query)
+            {
+
+                $query->where('nombre_persona','LIKE','%'.Input::get('buscador_general').'%')
+                    ->orWhere('numero_documento','LIKE','%'.Input::get('buscador_general').'%');
+            })->where('tipo_documento',$request->input('tipo_documento'))->get();
+
+
+        }  else if ($request->input('tipo_documento') == "seleccione_tipo_documento" && $request->input('ubicacion') != "seleccione_ubicacion")
+        {
+            $publicaciones=Publicacion::join('documentos', 'documentos.publicacion_id', '=', 'publicacions.id')->join('imagens','imagens.documento_id','=','documentos.id')->join('users','users.id','=','imagens.user_id')->join('lugars','lugars.id','=','users.lugar_id')->where
+            (function($query)
+            {
+                $query->where('nombre_persona','LIKE','%'.Input::get('buscador_general').'%')
+                 ->orWhere('numero_documento','LIKE','%'.Input::get('buscador_general').'%');
+            })->where('lugar_id',$request->input('ubicacion'))->get();
+
+
+        } else if ($request->input('tipo_documento') != "seleccione_tipo_documento" && $request->input('ubicacion') != "seleccione_ubicacion")
+        {
+            $publicaciones=Publicacion::join('documentos', 'documentos.publicacion_id', '=', 'publicacions.id')->join('imagens','imagens.documento_id','=','documentos.id')->join('users','users.id','=','imagens.user_id')->join('lugars','lugars.id','=','users.lugar_id')->where
+            (function($query)
+            {
+                $query->where('nombre_persona','LIKE','%'.Input::get('buscador_general').'%')
+                    ->orWhere('numero_documento','LIKE','%'.Input::get('buscador_general').'%');
+            })->where('tipo_documento',$request->input('tipo_documento'))->where('lugar_id',$request->input('ubicacion'))->get();
+
+        }
+
+        return $publicaciones;
     }
-    private function auxrepetido(Request $request){
-        if ($request->input('tipo_documento') == "seleccione_tipo_documento" && $request->input('ubicacion') == "seleccione_ubicacion")
-            echo "vacio 2";
-        else if ($request->input('tipo_documento') != "seleccione_tipo_documento" && $request->input('ubicacion') == "seleccione_ubicacion")
-            echo "selecciono un tipo de documento 2";
-        else if ($request->input('tipo_documento') == "seleccione_tipo_documento" && $request->input('ubicacion') != "seleccione_ubicacion")
-            echo "selecciono ubicacion 2";
-        else if ($request->input('tipo_documento') != "seleccione_tipo_documento" && $request->input('ubicacion') != "seleccione_ubicacion")
-            echo "selecciono un tipo de documento 2 && selecciono ubicacion 2";
-    }
+
 }

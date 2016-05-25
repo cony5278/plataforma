@@ -8,6 +8,7 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 use App\Imagen;
 use Carbon\Carbon;
+
 class ControladorImagen extends Controller
 {
     public function registrar(Request $request)

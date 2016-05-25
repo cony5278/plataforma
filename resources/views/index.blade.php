@@ -14,15 +14,12 @@
 
         window.onload=function(){
 
-//            var cuerpo = document.getElementsByTagName("BODY")[0];
-//            cuerpo.style.height=window.innerHeight+"px";
             var sesion=new SesionUsuario();
             sesion.sesion();
 
             var registro=new RegistroUsuario();
             registro.registrar();
             registro.enviar_registro();
-
 
         }
     </script>

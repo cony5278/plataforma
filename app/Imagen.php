@@ -9,7 +9,7 @@ class Imagen extends Model
     protected $table="imagens";
     public  $timestamps=false;
     protected $fillable =[
-        'nombre_imagen',
+        'ruta_imagen',
         'user_id' ,
         'documento_id' ,
     ];

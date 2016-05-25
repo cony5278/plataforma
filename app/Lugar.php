@@ -13,4 +13,9 @@ class Lugar extends Model
         'nombre_lugar' ,
         'tipo_lugar',
     ];
+
+
+    public function user(){
+        return $this->hasMany('App\User');
+    }
 }

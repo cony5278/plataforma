@@ -71,5 +71,8 @@ class User extends Authenticatable
     public function coordenada(){
         return $this->belongsTo('App\Coordenada');
     }
+    public function lugar(){
+        return $this->belongsTo('App\Lugar');
+    }
 
 }

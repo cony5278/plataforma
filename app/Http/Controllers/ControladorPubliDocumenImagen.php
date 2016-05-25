@@ -43,7 +43,7 @@ class ControladorPubliDocumenImagen extends Controller
                         \Storage::makeDirectory($ruta);
                     \Storage::disk('local')->put($ruta."/".$nombre, \File::get($request->file('archivo')[$j]));
                     Imagen::create([
-                        'nombre_imagen' => $nombre,
+                        'ruta_imagen' => $ruta."/".$nombre,
                         'user_id' => Auth::user()->id,
                         'documento_id' => $documento->id,
                     ]);

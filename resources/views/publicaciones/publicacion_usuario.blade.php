@@ -21,7 +21,7 @@ border: 0px solid #000000; background:#e7a61a; width: 100%;height: 350px;">
                             <img style="float:left;border-radius: 200px 200px 200px 200px;
 -moz-border-radius: 200px 200px 200px 200px;
 -webkit-border-radius: 200px 200px 200px 200px;
-border: 0px solid #000000;" width="100" height="100" src="../../documentos/imagenes/{{Auth::user()->email}}/{{$documento->tipo_documento}}/{{$imagen->nombre_imagen}}"/>
+border: 0px solid #000000;" width="100" height="100" src="../../documentos/imagenes/{{$imagen->ruta_imagen}}"/>
                         @endforeach
                     </div>
                 @endforeach

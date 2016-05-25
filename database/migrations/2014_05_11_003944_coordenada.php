@@ -14,8 +14,8 @@ class Coordenada extends Migration
     {
         Schema::create('coordenadas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('latitud')->nullable();
-            $table->string('longitud')->nullable();
+            $table->string('latitud');
+            $table->string('longitud');
         });
     }
 
