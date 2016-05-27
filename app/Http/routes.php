@@ -79,3 +79,4 @@ Route::get('buscador',function(){
 
 
 Route::post('buscador/recibir','ControladorDocumento@buscador');
+Route::get('buscador/recibir','ControladorDocumento@buscador');

@@ -1,11 +1,15 @@
 <section class="contenido_buscador">
     <section class="contenido_content">
         <article class="buscador_principal">
-            <form action="buscador/recibir" method="post">
+            <form action="buscador/recibir" name="buscador-filtros" id="buscador-filtros-id" method="get">
                 <input type="hidden" name="_token" value="{{csrf_token()}}" id="token"/>
-                <div class="form_buscador">
-                    <input type="text" name="buscador_general"/>
-                    <button class="yt-uix-button yt-uix-button-size-default yt-uix-button-default search-btn-component search-button" type="submit" onclick="if (document.getElementById('masthead-search-term').value == '') return false; document.getElementById('masthead-search').submit(); return false;;return true;" dir="ltr" tabindex="2" id="search-btn"><span class="yt-uix-button-content">Buscar</span></button>
+                <div class="form_buscador" style="position:relative;">
+                    <input type="text"id="input-buscador-general-id" name="buscador_general"/>
+                    <input type="submit" value ="Buscar" id="btn-buscador-filtros"/>
+                    <div id="div-aparecer-busquedas" style="display: none;position:absolute;top:100%;width:100%;height: 100px; background: #00aeef;">
+
+                    </div>
+
                 </div>
                 <div>
                     <select name="ubicacion">
@@ -30,3 +34,4 @@
         </article>
     </section>
 </section>
+

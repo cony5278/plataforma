@@ -12,6 +12,7 @@
     <script src="../js/bienvenido/publicacion.js" type="text/javascript"></script>
     <script src="../js/bienvenido/usuario.js" type="text/javascript"></script>
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+    <script src="../js/jquery-1.12.4.min.js" type="text/javascript"></script>
 
     <script>
         window.onload=function() {
@@ -54,7 +55,53 @@
             publicacion.registrar(2,"enviar_documento","http://localhost:8000/usuario/documento/registrar");
             publicacion.registrar(3,"enviar_imagenes","http://localhost:8000/usuario/imagen/registrar");
 
+
+            /*
+             ajax buscar
+             */
+//            pruebass
+//            buscador_form
+//            tipo_documento
+//            buscador_general
+//            ubicacion
+
+            $('#input-buscador-general-id').keypress(function(e){
+
+                    var direccion = $('#buscador-filtros-id').attr("action");
+                    var form = document.getElementById('buscador-filtros-id');
+                    var valor = document.getElementById('token').value;
+                    var div = $('#div-aparecer-busquedas');
+                    $.ajax({
+                        url: direccion,
+                        headers: {"X-CSRF-TOKEN": valor},
+                        data: {
+                            'buscador_general': form.buscador_general.value,
+                            'ubicacion': form.ubicacion.value,
+                            'tipo_documento': form.tipo_documento.value
+                        },
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function (datos) {
+
+                            var concatenar = "";
+                            for (var i in datos) {
+                                concatenar = datos[i].ruta_imagen;
+                            }
+                            div.css("display", "block");
+                            div.html(concatenar);
+                        },
+                        error: function (e) {
+//                        console.log(e.responseText);
+                        }
+                    });
+
+
+
+            });
+
+
         }
+
     </script>
 </head>
 <body>
