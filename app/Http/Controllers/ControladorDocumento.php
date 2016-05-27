@@ -26,7 +26,6 @@ class ControladorDocumento extends Controller
     public function buscador(Request $request){
 
 
-
         if($request->has('buscador_general')) {
             if (!is_numeric($request->input('buscador_general'))) {
 //                echo"no es numerico y vacio los selectores";
@@ -44,10 +43,10 @@ class ControladorDocumento extends Controller
     private function repetido(Request $request){
         if ($request->input('tipo_documento') == "seleccione_tipo_documento" && $request->input('ubicacion') == "seleccione_ubicacion") {
 
-            $publicaciones = Publicacion::join('documentos', 'documentos.publicacion_id', '=', 'publicacions.id')->join('imagens','imagens.documento_id','=','documentos.id')->where('nombre_persona','LIKE','%'.$request->input('buscador_general').'%')->orWhere('numero_documento','LIKE','%'.$request->input('buscador_general').'%')->get();
+            $publicaciones = Publicacion::join('documentos', 'documentos.publicacion_id', '=', 'publicacions.id')->join('users','users.id','=','publicacions.user_id')->where('nombre_persona','LIKE','%'.$request->input('buscador_general').'%')->orWhere('numero_documento','LIKE','%'.$request->input('buscador_general').'%')->get();
             return $publicaciones;
         }else if ($request->input('tipo_documento') != "seleccione_tipo_documento" && $request->input('ubicacion') == "seleccione_ubicacion"){
-            return $publicaciones=Publicacion::join('documentos', 'documentos.publicacion_id', '=', 'publicacions.id')->join('imagens','imagens.documento_id','=','documentos.id')->where
+            return $publicaciones=Publicacion::join('documentos', 'documentos.publicacion_id', '=', 'publicacions.id')->join('users','users.id','=','publicacions.user_id')->where
             (function($query)
             {
 
@@ -58,7 +57,7 @@ class ControladorDocumento extends Controller
 
         }  else if ($request->input('tipo_documento') == "seleccione_tipo_documento" && $request->input('ubicacion') != "seleccione_ubicacion")
         {
-            return $publicaciones=Publicacion::join('documentos', 'documentos.publicacion_id', '=', 'publicacions.id')->join('imagens','imagens.documento_id','=','documentos.id')->join('users','users.id','=','imagens.user_id')->join('lugars','lugars.id','=','users.lugar_id')->where
+            return $publicaciones=Publicacion::join('documentos', 'documentos.publicacion_id', '=', 'publicacions.id')->join('users','users.id','=','publicacions.user_id')->join('lugars','lugars.id','=','users.lugar_id')->where
             (function($query)
             {
                 $query->where('nombre_persona','LIKE','%'.Input::get('buscador_general').'%')
@@ -68,7 +67,7 @@ class ControladorDocumento extends Controller
 
         } else if ($request->input('tipo_documento') != "seleccione_tipo_documento" && $request->input('ubicacion') != "seleccione_ubicacion")
         {
-            return $publicaciones=Publicacion::join('documentos', 'documentos.publicacion_id', '=', 'publicacions.id')->join('imagens','imagens.documento_id','=','documentos.id')->join('users','users.id','=','imagens.user_id')->join('lugars','lugars.id','=','users.lugar_id')->where
+            return $publicaciones=Publicacion::join('documentos', 'documentos.publicacion_id', '=', 'publicacions.id')->join('users','users.id','=','publicacions.user_id')->join('lugars','lugars.id','=','users.lugar_id')->where
             (function($query)
             {
                 $query->where('nombre_persona','LIKE','%'.Input::get('buscador_general').'%')

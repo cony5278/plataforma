@@ -65,35 +65,79 @@
 //            buscador_general
 //            ubicacion
 
-            $('#input-buscador-general-id').keypress(function(e){
+            $('#input-buscador-general-id').keypress(function(event){
 
-                    var direccion = $('#buscador-filtros-id').attr("action");
-                    var form = document.getElementById('buscador-filtros-id');
-                    var valor = document.getElementById('token').value;
-                    var div = $('#div-aparecer-busquedas');
-                    $.ajax({
-                        url: direccion,
-                        headers: {"X-CSRF-TOKEN": valor},
-                        data: {
-                            'buscador_general': form.buscador_general.value,
-                            'ubicacion': form.ubicacion.value,
-                            'tipo_documento': form.tipo_documento.value
-                        },
-                        type: 'GET',
-                        dataType: 'json',
-                        success: function (datos) {
 
-                            var concatenar = "";
-                            for (var i in datos) {
-                                concatenar = datos[i].ruta_imagen;
+                var direccion = $('#buscador-filtros-id').attr("action");
+                var form = document.getElementById('buscador-filtros-id');
+                var valor = document.getElementById('token').value;
+
+                $.ajax({
+                    url: direccion,
+                    headers: {"X-CSRF-TOKEN": valor},
+                    data: {
+                        'buscador_general': form.buscador_general.value,
+                        'ubicacion': form.ubicacion.value,
+                        'tipo_documento': form.tipo_documento.value
+                    },
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (datos) {
+                        console.log(datos);
+                        var div_general=$('.form_buscador');
+                        $('.form_buscador div').remove();
+                        var div = $('<div/>');
+                        div.css({'zIndex':'3','position':'absolute','top':'100%','background': '#00aeef'});
+
+
+                        var contador = 0;
+                        var publicacion_id;
+                        var div_adentro;
+                        var div_img ;
+                        var p_nombre;
+                        var a;
+
+                        if(datos.length>1) {
+                            var i=0;
+                            for (i=0;i<datos.length;i++) {
+                                contador++;
+                                if (contador == 1) {//
+                                    var div_adentro = $('<div/>');
+                                    div_adentro.css({'width': '100%', 'background': '#A94040'});
+                                    div_img = $('<img/>');
+                                    p_nombre = $('<p/>');
+                                    div_adentro.append(div_img);
+                                    div_adentro.append(p_nombre);
+                                    publicacion_id = datos[i].publicacion_id;
+                                }
+                                if (publicacion_id == datos[i].publicacion_id) {
+
+                                    a = $('<a/>');
+                                    a.css({'width': '100%', height: 'inherit'})
+                                    a.html(datos[i].publicacion_id);
+                                    div_adentro.append(a);
+                                    if(i==datos.length-1)
+                                        div.append(div_adentro);
+
+                                } else {
+
+                                    div.append(div_adentro);
+                                    contador = 0;
+                                    i--;
+                                }
                             }
-                            div.css("display", "block");
-                            div.html(concatenar);
-                        },
-                        error: function (e) {
+                        }else
+                            div.append(div_adentro);
+                        i=0;
+                        contador=0;
+                        div_general.append(div);
+
+
+                    },
+                    error: function (e) {
 //                        console.log(e.responseText);
-                        }
-                    });
+                    }
+                });
 
 
 

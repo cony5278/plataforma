@@ -17,6 +17,9 @@ class Publicacion extends Migration
             $table->string('titulo_publicacion');
             $table->string('descripcion_publicacion');
             $table->dateTime('fecha_hora_publicacion');
+            $table->integer('user_id')->unsigned();//es de un usuario la publicacio a laque va dirigida la notificacion
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
         });
     }
 

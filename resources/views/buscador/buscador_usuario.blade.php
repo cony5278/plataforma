@@ -6,9 +6,7 @@
                 <div class="form_buscador" style="position:relative;">
                     <input type="text"id="input-buscador-general-id" name="buscador_general"/>
                     <input type="submit" value ="Buscar" id="btn-buscador-filtros"/>
-                    <div id="div-aparecer-busquedas" style="display: none;position:absolute;top:100%;width:100%;height: 100px; background: #00aeef;">
 
-                    </div>
 
                 </div>
                 <div>

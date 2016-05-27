@@ -18,8 +18,6 @@ class Documento extends Migration
             $table->string('numero_documento');
             $table->enum('tipo_documento',['tarjeta_credito','tarjeta_debito','carnet_estudiantil',
             'carnet_eps','libreta_militar','pasaporte','visa','tarjeta_profesional','pase','licencia_conduccion','otro']);
-            $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('publicacion_id')->unsigned();
             $table->foreign('publicacion_id')->references('id')->on('publicacions')->onDelete('cascade');
         });

@@ -62,8 +62,8 @@ class User extends Authenticatable
         $consulta->save();
     }
 
-    public function documentos(){
-        return $this->hasMany('App\Documento');
+    public function publicacion(){
+        return $this->hasMany('App\Publicacion');
     }
     public function imagenes(){
         return $this->hasMany('App\Imagen');

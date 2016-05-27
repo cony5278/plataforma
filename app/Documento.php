@@ -12,12 +12,9 @@ class Documento extends Model
         'nombre_persona' ,
         'numero_documento' ,
         'tipo_documento',
-        'user_id',
         'publicacion_id',
     ];
-    public function user(){
-        return $this->belongsTo('App\User');
-    }
+
     public function publicacion(){
         return $this->belongsTo('App\Publicacion');
     }

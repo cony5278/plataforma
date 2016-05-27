@@ -21,6 +21,7 @@ class ControladorPubliDocumenImagen extends Controller
             'titulo_publicacion' => $request->input('titulo_publicacion'),
             'descripcion_publicacion' => $request->input('descripcion_publicacion'),
             'fecha_hora_publicacion' => Carbon::now()->toDateTimeString(),
+            'user_id' => Auth::user()->id,
         ]);
         $nombre_documento = $request->input('nombre_persona');
         $valor = 0;
@@ -29,7 +30,6 @@ class ControladorPubliDocumenImagen extends Controller
                 'nombre_persona' => $request->input('nombre_persona')[$i],
                 'numero_documento' => $request->input('numero_documento')[$i],
                 'tipo_documento' => $request->input('tipo_documento')[$i],
-                'user_id' => Auth::user()->id,
                 'publicacion_id' => $publicacion->id,
             ]);
             $files = $request->file('archivo');
