@@ -86,7 +86,7 @@
                         console.log(datos);
                         var div_general=$('.form_buscador');
                         $('.form_buscador div').remove();
-                        var div = $('<div/>');
+                        var div = $('<div   />');
                         div.css({'zIndex':'3','position':'absolute','top':'100%','background': '#00aeef'});
 
 

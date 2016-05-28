@@ -38,10 +38,10 @@
         @yield('iniciar_sesion')
         @yield('buscador')
     </div>
-    <footer>
+    {{--<footer>--}}
 
-        <p>pie de pagina </p>
-        <!-- end .footer --></footer>
+        {{--<p>pie de pagina </p>--}}
+        {{--<!-- end .footer --></footer>--}}
     <!-- end .container --></div>
 
 </body>

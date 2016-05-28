@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('nombre_usuario');
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('imagen_usuario');
             $table->rememberToken();
             $table->integer('lugar_id')->nullable()->unsigned();//es de un usuario la publicacio a laque va dirigida la notificacion
             $table->foreign('lugar_id')->references('id')->on('lugars')->onDelete('cascade');
